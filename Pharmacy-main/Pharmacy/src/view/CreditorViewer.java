@@ -44,8 +44,8 @@ public class CreditorViewer {
             int lastid;
             id=this.creditorController.getAll().size();
             customer.setID(this.creditorController.getAll().size());
-
             creditorController.add(customer);
+            System.out.println(creditorController.getAll().toString());
         }
 
     }

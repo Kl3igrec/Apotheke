@@ -5,6 +5,8 @@ import controllers.DebitorController;
 import controllers.CreditorController;
 import java.util.*;
 
+import static java.lang.Thread.sleep;
+
 public class Viewer {//trebuie puse controllere
 
     private CreditorController CreditorController;
@@ -17,33 +19,32 @@ public class Viewer {//trebuie puse controllere
         DebitorController = debitorController;
     }
 
-    public void menuDisplay1(){
+    public void menuDisplayWelcome(){
         System.out.println("\tWelcome to your Pharmacy\n Please select your position :\n1. Admin \n2. Creditor \n3. Debitor \n");
         System.out.print("Type in the number : ");
     }
-    public void menu(){
+    public void menu() {
         Scanner first= new Scanner(System.in);
-
-        menuDisplay1();
-        switch (first.nextInt()){
-            case 1:
+        menuDisplayWelcome();
+        switch (first.nextInt()) {
+            case 1 -> {
                 System.out.println("You are now an admin");
-                AdminViewer AdminView=new AdminViewer(CreditorController,DrugController,DebitorController);
+                AdminViewer AdminView = new AdminViewer(CreditorController, DrugController, DebitorController);
                 AdminView.menuAdmin();
-                break;
-            case 2:
+            }
+            case 2 -> {
                 System.out.println("Your are now a creditor");
-                CreditorViewer creditorView = new CreditorViewer(CreditorController,DrugController);
-                break;
-            case 3:
+                CreditorViewer creditorView = new CreditorViewer(CreditorController, DrugController);
+                creditorView.menuCreditor();
+            }
+            case 3 -> {
                 System.out.println("You are now a debitor");
-                DebitorViewer debitorView = new DebitorViewer(DebitorController,DrugController);
+                DebitorViewer debitorView = new DebitorViewer(DebitorController, DrugController);
+                debitorView.menuDebitor();
+            }
 
-                break;
         }
     }
 
-    public void menuAdmin(){
 
-    }
 }
