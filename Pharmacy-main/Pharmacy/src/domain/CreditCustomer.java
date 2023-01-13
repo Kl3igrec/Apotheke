@@ -13,6 +13,11 @@ public class CreditCustomer extends Customer {
         items.add(drug);
     }
 
+    public List<Drug> getItems() {
+        return items;
+    }
 
-
+    public void setItems(List<Drug> items) {
+        this.items = items;
+    }
 }

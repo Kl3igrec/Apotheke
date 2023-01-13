@@ -15,15 +15,9 @@ public class DebitorViewer {
     private DebitorController debitorController;
     private DrugController drugController;
 
-    public DebitorViewer(controllers.DebitorController DebitorController,controllers.DrugController DrugController){
-        debitorController=DebitorController;
-        drugController=DrugController;
-    }
-    public boolean intermediarMenu(String first,String second) {
-        if (debitorController.getAll().contains(second) && debitorController.getAll().contains(first)) {
-            return true;
-        }
-        return false;
+    public DebitorViewer(controllers.DebitorController DebitorController,controllers.DrugController DrugController) {
+        debitorController = DebitorController;
+        drugController = DrugController;
     }
 
     public void menuDisplayViewer(){
@@ -45,9 +39,8 @@ public class DebitorViewer {
         String firstNameDebitor = debitorScanner.nextLine();
         Type type = Type.ADULT;
         int id = 0;
-        float budget = 0;
         DebitCustomer customer = new DebitCustomer(firstNameDebitor,lastNameDebitor,type,id);
-        if(!intermediarMenu(lastNameDebitor,firstNameDebitor)){
+        if(!debitorController.getAll().contains(customer)){
             System.out.println("You are in need of an account");
             customer.setID(this.debitorController.getAll().size());
             debitorController.add(customer);
@@ -65,17 +58,21 @@ public class DebitorViewer {
                     System.out.println(drugController.getAll().toString());
                     System.out.println("\n Decide what medication you would like to purchase after ID");
                     int idMed= debitorScanner.nextInt();
-                    System.out.println("Insert the quantity of the medication");
-                    for(Drug drug : drugController.getAll()){
-//                        if(drug.getID()==idMed)
+                    for(Drug drug :drugController.getAll())
+                        if(drug.getID()==idMed) {
+                            System.out.println("Insert the quantity of the medication");
+                            int quantityMed = debitorScanner.nextInt();
 
-                    }
+
+                        }
+
+
+
                     float quantityWanted = debitorScanner.nextInt();
                     List<Drug> drugs = new ArrayList<>();
                     drugs=drugController.getAll();
 
                     break;
-
 
                 case 0:
                     ok= false;
