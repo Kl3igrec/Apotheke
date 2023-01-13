@@ -7,8 +7,8 @@ import domain.Type;
 import java.util.Scanner;
 
 public class CreditorViewer {
-    private controllers.CreditorController creditorController;
-    private controllers.DrugController drugController;
+    private final controllers.CreditorController creditorController;
+    private final controllers.DrugController drugController;
 
     public CreditorViewer(controllers.CreditorController CreditorController, controllers.DrugController DrugController){
        creditorController=CreditorController;
@@ -23,10 +23,7 @@ public class CreditorViewer {
                 Options are to be inserted""");
     }
     public boolean intermediarMenu(String first,String second){
-        if(creditorController.getAll().contains(second) && creditorController.getAll().contains(first)){
-            return true ;
-        }
-        return false;
+        return creditorController.getAll().contains(second) && creditorController.getAll().contains(first);
 
     }
     public void menuCreditor(){

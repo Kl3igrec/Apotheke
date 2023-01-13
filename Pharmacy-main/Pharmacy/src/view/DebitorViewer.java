@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DebitorViewer {
-    private DebitorController debitorController;
-    private DrugController drugController;
+    private final DebitorController debitorController;
+    private final DrugController drugController;
 
     public DebitorViewer(controllers.DebitorController DebitorController,controllers.DrugController DrugController) {
         debitorController = DebitorController;

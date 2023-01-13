@@ -15,10 +15,10 @@ import java.util.List;
 
 
 public class DatabaseRepository {
-    private DrugRepository drugRepository;
-    private CreditorRepository creditorRepository;
-    private DebitorRepository debitorRepository;
-    private Connection connection;
+    private final DrugRepository drugRepository;
+    private final CreditorRepository creditorRepository;
+    private final DebitorRepository debitorRepository;
+    private final Connection connection;
     public DatabaseRepository(DrugRepository drugRepository, CreditorRepository creditorRepository, DebitorRepository debitorRepository) throws SQLException{
         this.drugRepository = drugRepository;
         this.creditorRepository = creditorRepository;

@@ -1,13 +1,10 @@
 package view;
 
-import controllers.CreditorController;
 import domain.CreditCustomer;
 import domain.Drug;
 import domain.Type;
-import repository.inmemory.CreditorRepository;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -22,7 +19,7 @@ public class AdminViewer {
         debitorController = DebitorController;
     }
 
-    public void menuDisplayAdmin(){
+    public void menuDisplayAdmin() {
         System.out.println("""
                 Pick an action you would like to do as an Admin:\s
                 """);
@@ -43,7 +40,7 @@ public class AdminViewer {
                 """);
     }
 
-    public void menuDisplayNegativeValueDeletion(){
+    public void menuDisplayNegativeValueDeletion() {
         System.out.println("""
                 Looks like the value u entered causes the existence of a negative quantity
                 In this case u have the following options:
@@ -52,35 +49,36 @@ public class AdminViewer {
                 3.Stop this action\s
                 """);
     }
-    public void menuAdmin()  {
+
+    public void menuAdmin() {
         Scanner adminScanner = new Scanner(System.in);
-        AdminViewer adminViewer = new AdminViewer(creditorController,drugController,debitorController);
+        AdminViewer adminViewer = new AdminViewer(creditorController, drugController, debitorController);
         String name;
         String lastName;
         Type type = null;
         int id;
         boolean ok = true;
-        while(ok){
+        while (ok) {
             menuDisplayAdmin();
-            switch(adminScanner.nextInt()){
+            switch (adminScanner.nextInt()) {
                 case 1:
                     System.out.println("You've selected to enter a New Creditor manually");
                     System.out.println("Select a name: ");
                     name = adminScanner.next();
                     System.out.println("Select a last name: ");
-                    lastName=adminScanner.next();
-                    type=Type.SENIOR;
+                    lastName = adminScanner.next();
+                    type = Type.SENIOR;
 
                     System.out.println(" Id will be automatically selected \n ");
-                    id =this.creditorController.getAll().size();
-                    adminViewer.creditorController.add(new CreditCustomer(name,lastName,type,id));
+                    id = this.creditorController.getAll().size();
+                    adminViewer.creditorController.add(new CreditCustomer(name, lastName, type, id));
                     break;
                 case 2:
                     System.out.println("You've selected to delete a Creditor manually");
                     System.out.println(Arrays.toString(creditorController.getAll().toString().split("}, ")));
                     System.out.println("Select the id : ");
                     int indexCreditor = adminScanner.nextInt();
-                    creditorController.getAll().remove(indexCreditor-1);
+                    creditorController.getAll().remove(indexCreditor - 1);
                     break;
                 case 3:
                     System.out.println("You've selected to enter a New Debitor manually");
@@ -88,18 +86,18 @@ public class AdminViewer {
                     System.out.println("Select a name: ");
                     name = adminScanner.next();
                     System.out.println("Select a last name: ");
-                    lastName=adminScanner.next();
+                    lastName = adminScanner.next();
                     int number = adminScanner.nextInt();
-                    if (number ==0)
-                        type=Type.CHILD;
+                    if (number == 0)
+                        type = Type.CHILD;
                     else if (number == 1) {
-                        type=Type.ADULT;
-                    } else if (number== 2){
-                        type=Type.SENIOR;
+                        type = Type.ADULT;
+                    } else if (number == 2) {
+                        type = Type.SENIOR;
                     }
                     System.out.println(" Id will be automatically selected \n ");
-                    id =this.creditorController.getAll().size();
-                    adminViewer.creditorController.add(new CreditCustomer(name,lastName,type,id));
+                    id = this.creditorController.getAll().size();
+                    adminViewer.creditorController.add(new CreditCustomer(name, lastName, type, id));
 
                     break;
                 case 4:
@@ -107,7 +105,7 @@ public class AdminViewer {
                     System.out.println(Arrays.toString(creditorController.getAll().toString().split("}, ")));
                     System.out.println("Select the id : ");
                     int indexDebit = adminScanner.nextInt();
-                    creditorController.getAll().remove(indexDebit-1);
+                    creditorController.getAll().remove(indexDebit - 1);
                     break;
                 case 5:
                     System.out.println("You've selected to see all Drugs sorted by name");
@@ -128,34 +126,36 @@ public class AdminViewer {
                             """);
                     System.out.println("Insert the name of the Drug u want to add: ");
                     String nameMedication = adminScanner.next();
-                    boolean modified=false;
-                    for(Drug e : drugController.getAll())
-                        if(Objects.equals(e.getName(), nameMedication)){
+                    boolean modified = false;
+                    for (Drug e : drugController.getAll())
+                        if (Objects.equals(e.getName(), nameMedication)) {
                             System.out.println("Looks like we've found the med you were looking for \nInsert the quantity you want to add");
                             int quantityMedication = adminScanner.nextInt();
-                            while(quantityMedication<0){
+                            while (quantityMedication < 0) {
                                 System.out.println("You've inserted a negative value for quantity. Please insert a positive one");
-                                quantityMedication=adminScanner.nextInt();
+                                quantityMedication = adminScanner.nextInt();
                             }
-                            e.setQuantity(e.getQuantity()+quantityMedication);
-                            modified=true;
-                            break;}
-                    if(!modified){
+                            e.setQuantity(e.getQuantity() + quantityMedication);
+                            modified = true;
+                            break;
+                        }
+                    if (!modified) {
                         System.out.println("Insert the QUANTITY you want to add");
                         int quantityMedication = adminScanner.nextInt();
-                        while(quantityMedication<0){
+                        while (quantityMedication < 0) {
                             System.out.println("You've inserted a negative value for quantity. Please insert a positive one");
-                            quantityMedication=adminScanner.nextInt();
+                            quantityMedication = adminScanner.nextInt();
                         }
                         System.out.println("Insert the PRICE you want to add");
                         float priceMedication = adminScanner.nextInt();
-                        while(priceMedication<0){
+                        while (priceMedication < 0) {
                             System.out.println("You've inserted a negative value for price. Please insert a positive one");
-                            priceMedication=adminScanner.nextInt();
+                            priceMedication = adminScanner.nextInt();
                         }
-                        Drug drug = new Drug(priceMedication,quantityMedication,nameMedication,drugController.getAll().size());
-                        drugController.add(drug);}
-                break;
+                        Drug drug = new Drug(priceMedication, quantityMedication, nameMedication, drugController.getAll().size());
+                        drugController.add(drug);
+                    }
+                    break;
                 case 9:
                     System.out.println("""
                             You've selected to delete a Drug.\s
@@ -163,16 +163,16 @@ public class AdminViewer {
                             IMPORTANT NOTE: EACH DRUG HAS A UNIQUE NAME AND A UNIQUE ID \s
                             """);
                     System.out.println("Insert the name of the Drug you would like to delete or lower its quantity");
-                    nameMedication=adminScanner.next();
+                    nameMedication = adminScanner.next();
                     System.out.println("If you want to delete the Drug, set any negative value, otherwise just the value u want to remove: ");
-                    int quantityMedication=adminScanner.nextInt();
-                    for(Drug e : drugController.getAll())
-                        if(Objects.equals(e.getName(), nameMedication)){
-                            if(quantityMedication<0)
+                    int quantityMedication = adminScanner.nextInt();
+                    for (Drug e : drugController.getAll())
+                        if (Objects.equals(e.getName(), nameMedication)) {
+                            if (quantityMedication < 0)
                                 drugController.remove(e);
-                            if(e.getQuantity()-quantityMedication>=0)
-                                e.setQuantity(e.getQuantity()-quantityMedication);
-                            else if (e.getQuantity()-quantityMedication< 0) {
+                            if (e.getQuantity() - quantityMedication >= 0)
+                                e.setQuantity(e.getQuantity() - quantityMedication);
+                            else if (e.getQuantity() - quantityMedication < 0) {
                                 menuDisplayNegativeValueDeletion();
                                 switch (adminScanner.nextInt()) {
                                     case 1 -> {
@@ -187,7 +187,8 @@ public class AdminViewer {
                                 }
 
                             }
-                            break;}
+                            break;
+                        }
 
                     break;
                 case 10:
@@ -199,8 +200,8 @@ public class AdminViewer {
                 case 12:
                     System.out.println("You've decided to request some medicine");
                 case 0:
-                    ok=false;
-                    Viewer view=new Viewer(creditorController,drugController,debitorController);
+                    ok = false;
+                    Viewer view = new Viewer(creditorController, drugController, debitorController);
                     view.menu();
 
             }

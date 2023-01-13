@@ -16,7 +16,7 @@ public class CreditorController implements ControllerInterface<Integer,CreditCus
         CreditorRepository = creditorRepository;
     }
 
-    private CreditorRepository CreditorRepository;
+    private final CreditorRepository CreditorRepository;
     @Override
     public List<CreditCustomer> getAll() {
         return this.CreditorRepository.findAll();

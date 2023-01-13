@@ -16,8 +16,8 @@ import java.util.List;
 
 public class DebitorRepositoryDB implements DBCRUDRepository<Integer,DebitCustomer> {
 
-    private Connection connection;
-    private List<DebitCustomer> listOfDebitors;
+    private final Connection connection;
+    private final List<DebitCustomer> listOfDebitors;
 
     public DebitorRepositoryDB(Connection connection) {
         this.connection = connection;

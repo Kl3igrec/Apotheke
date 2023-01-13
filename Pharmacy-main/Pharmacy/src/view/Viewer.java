@@ -9,9 +9,9 @@ import static java.lang.Thread.sleep;
 
 public class Viewer {//trebuie puse controllere
 
-    private CreditorController CreditorController;
-    private DrugController DrugController;
-    private DebitorController DebitorController;
+    private final CreditorController CreditorController;
+    private final DrugController DrugController;
+    private final DebitorController DebitorController;
 
     public Viewer(controllers.CreditorController creditorController, controllers.DrugController drugController, controllers.DebitorController debitorController) {
         CreditorController = creditorController;

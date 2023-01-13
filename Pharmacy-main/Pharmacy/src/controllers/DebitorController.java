@@ -12,7 +12,7 @@ import java.util.List;
 import domain.DebitCustomer;
 public class DebitorController implements ControllerInterface<Integer,DebitCustomer> {
 
-    private DebitorRepository DebitorRepository;
+    private final DebitorRepository DebitorRepository;
 
     public DebitorController(DebitorRepository debitorRepository) {
         DebitorRepository = debitorRepository;

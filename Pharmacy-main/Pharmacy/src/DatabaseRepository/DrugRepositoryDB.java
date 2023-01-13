@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DrugRepositoryDB implements DBCRUDRepository<Integer, Drug> {
-    private Connection connection;
-    private List<Drug> listOfDrugs;
+    private final Connection connection;
+    private final List<Drug> listOfDrugs;
     public DrugRepositoryDB(Connection connection,List<Drug> listOfDrugs) {
         this.connection = connection;
         this.listOfDrugs=listOfDrugs;

@@ -17,7 +17,7 @@ public class DrugController implements ControllerInterface<Integer,Drug> {
     }
 
 
-    private DrugRepository DrugRepository;
+    private final DrugRepository DrugRepository;
     @Override
     public List<Drug> getAll() {
         return this.DrugRepository.findAll();
